@@ -56,7 +56,7 @@ function App(): React.JSX.Element {
       };
       guardarPresupuestoStorage();
     }
-  }, [isValidPresupuesto]);
+  }, [isValidPresupuesto, presupuesto]);
 
   useEffect(() => {
     const obtenerGastosStorage = async () => {
@@ -147,15 +147,17 @@ function App(): React.JSX.Element {
         },
         {
           text: 'Si, eliminar',
-          onPress: async () => {
-            try {
-              await AsyncStorage.clear();
-              setGastos([]);
-              setIsValidPresupuesto(false);
-              setPresupuesto(0);
-            } catch (error) {
-              console.error(error);
-            }
+          onPress: () => {
+            (async () => {
+              try {
+                await AsyncStorage.clear();
+                setGastos([]);
+                setIsValidPresupuesto(false);
+                setPresupuesto(0);
+              } catch (error) {
+                console.error(error);
+              }
+            })();
           },
         },
       ],

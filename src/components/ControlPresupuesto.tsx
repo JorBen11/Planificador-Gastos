@@ -34,7 +34,7 @@ const ControlPresupuesto: React.FC<ControlPresupuestoProps> = ({
     setPorcentaje(nuevoPorcentaje);
     setGastado(totalGastado);
     setDisponible(totalDisponible);
-  }, [gastos]);
+  }, [gastos, presupuesto]);
 
   return (
     <View style={styles.contenedor}>
